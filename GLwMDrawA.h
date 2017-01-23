@@ -1,24 +1,4 @@
-
-                           widgets README file
-
-
-This directory contains the source code for SGI's OpenGL Xt/Motif widgets,
-slightly modified by Jeroen van der Zijp to work better with Mesa.
-
-To compile the widget code (producing lib/libGLw.a) cd to the widgets/
-directory and type 'make <config>' where <config> is the system configuration
-you used to compile Mesa (like 'make linux').  This hasn't been tested on
-many systems so let us know if you have trouble.
-
-If you want to make a Linux ELF shared lib instead of the non-shared .a
-file see the notes in the Makefile.
-
-If you want to build with Motif support, edit Makefile.X11, looking
-for the "Motif" information.
-
-The SGI copyright is as follows.
-
-
+/*
  * (c) Copyright 1993, Silicon Graphics, Inc.
  * ALL RIGHTS RESERVED 
  * Permission to use, copy, modify, and distribute this software for 
@@ -54,3 +34,8 @@ The SGI copyright is as follows.
  * Inc., 2011 N.  Shoreline Blvd., Mountain View, CA 94039-7311.
  *
  * OpenGL(TM) is a trademark of Silicon Graphics, Inc.
+ */
+#ifndef __GLX_MOTIF
+#define __GLX_MOTIF 1
+#endif
+#include "GLwDrawA.h"
