@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+override_dh_auto_configure:
+	dh_auto_configure -- --disable-silent-rules --enable-motif
+
+# Kill *.la files, and forget no-one:
+override_dh_install:
+	find debian/tmp -name '*.la' -delete
+	rm -f debian/tmp/usr/include/GL/*P.h
+	dh_install --fail-missing
+
+%:
+	dh $@ --with quilt,autoreconf --builddirectory=build/
+
+# For maintainer use only, generate a tarball:
+gentarball: SOURCE=glw
+gentarball: UV=$(shell dpkg-parsechangelog|awk '/^Version:/ {print $$2}'|sed 's/-.*$$//')
+gentarball:
+	git archive --format=tar upstream-experimental --prefix=$(SOURCE)-$(UV)/ | gzip -9 > ../$(SOURCE)_$(UV).orig.tar.gz

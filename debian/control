@@ -1,0 +1,52 @@
+Source: glw
+Section: libs
+Priority: optional
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Standards-Version: 3.9.3
+Build-Depends:
+ debhelper (>= 9),
+ dh-autoreconf,
+ quilt,
+ pkg-config,
+ automake,
+ libmotif-dev,
+ libgl1-mesa-dev | libgl-dev,
+ libx11-dev,
+ libxt-dev,
+ libxext-dev,
+Vcs-Git: git://git.debian.org/git/pkg-xorg/lib/glw
+Vcs-Browser: http://git.debian.org/?p=pkg-xorg/lib/glw.git
+Homepage: http://mesa3d.sourceforge.net/
+
+Package: libglw1-mesa
+Architecture: any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Provides: libglw1
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
+Description: GL widget library for Athena and Motif -- runtime
+ This package provides a simple widgets library, libGLw, which
+ allows Motif-based applications to embed an OpenGL drawing context.
+
+Package: libglw1-mesa-dev
+Section: libdevel
+Architecture: any
+Depends:
+ libglw1-mesa (= ${binary:Version}),
+ libx11-dev,
+ libxt-dev,
+ libmotif-dev | lesstif2-dev,
+ mesa-common-dev,
+ ${misc:Depends},
+Provides: mesag3-widgets, mesag-widgets-dev, libglw-dev
+Conflicts: libglw-dev, libgl1-mesa-swx11-dev (<< 6.5.2-4)
+Replaces: libglw-dev
+Description: GL widget library for Athena and Motif -- development files
+ This package provides the development environment required for
+ compiling programs with the Mesa widgets library, libGLw, which
+ allows Motif-based applications to embed an OpenGL drawing context.
+ The headers and static libraries for compiling programs that use this
+ library are included.
+

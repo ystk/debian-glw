@@ -1,0 +1,4 @@
+#git=git://anongit.freedesktop.org/mesa/glw
+version=3
+opts="uversionmangle=s/-rc/~rc/" \
+ftp://freedesktop.org/pub/mesa/glw/ glw-(.*)\.tar\.gz
